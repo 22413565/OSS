@@ -66,4 +66,5 @@ Conceptualization 단계에서 정의한 기능을 바탕으로 Actor와 Use Cas
 Actor는 Customer, Store, Kitchen, Admin으로 구분하였으며, 각 기능은 시스템 내부에서 수행되는 역할에 따라 연결하였다.
 
 <img width="1536" height="1024" alt="logo" src="https://github.com/22413565/OSS/blob/main/use%20case%20diagram1.png" />
+0424 완성
 
