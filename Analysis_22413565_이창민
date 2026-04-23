@@ -1,31 +1,68 @@
-usecaseDiagram
-actor Customer
-actor Admin
-actor Kitchen
-actor Store
+# WTOrder System - Analysis
 
-rectangle WTOrder_System {
+---
 
-  Customer --> (View Menu)
-  Customer --> (Add Order)
-  Customer --> (Confirm Order)
-  Customer --> (Call Staff)
+## [ Revision history ]
 
-  Admin --> (Manage Store Info)
-  Admin --> (Monitor Store Data)
+| Revision date | Version # | Description | Author |
+|--------------|----------|------------|--------|
+| 2026/04/24 | 1.00 | 초기 버전 | 이창민 |
 
-  Kitchen --> (Receive Order)
+---
 
-  Store --> (Manage Menu)
-  Store --> (Upload Photo)
-  Store --> (Edit Description)
-  Store --> (Set Price)
-  Store --> (Control Sold-out)
-  Store --> (Monitor Orders)
+# = Contents =
+1. Introduction  
+2. Use case analysis  
+3. Domain analysis  
+4. User Interface prototype  
+5. Glossary  
+6. References  
 
-  (Add Order) --> (Process Customer Order)
-  (Confirm Order) --> (Process Customer Order)
+---
 
-  (Process Customer Order) --> (Send Order to Kitchen)
-  (Manage Menu) --> (Manage Menu Data)
-}
+# 1. Introduction
+
+## 1) Executive Summary
+최근 음식점과 카페, 소규모 매장에서는 인건비 상승과 주문 누락 문제를 줄이기 위해 테이블 오더 시스템의 필요성이 커지고 있다.  
+하지만 기존의 테이블 오더 시스템은 설치 비용, 유지 비용, 사용 수수료 등의 부담이 있고, 사용자 인터페이스가 복잡하여 고령층이나 디지털 기기에 익숙하지 않은 사용자들이 사용하기 어려운 경우가 많다.
+
+WTOrder System은 이러한 문제를 해결하기 위해 설계된 시스템이다.  
+고객은 테이블에서 메뉴를 확인하고 주문을 넣을 수 있으며, 주방은 주문을 빠르게 전달받아 조리할 수 있다. 또한 매장 관리자는 메뉴, 가격, 품절 상태, 설명, 사진 등을 쉽게 관리할 수 있고, 관리자(Admin)는 매장 정보와 전체 데이터를 관리할 수 있다.
+
+본 시스템은 소상공인을 위한 저비용 구조, 직관적인 인터페이스, 빠른 주문 처리, 효율적인 데이터 관리 기능을 목표로 한다.
+
+---
+
+## 2) Business Goals
+WTOrder System의 목적은 다음과 같다.
+
+- 고객이 직원을 직접 부르지 않고도 편리하게 메뉴를 조회하고 주문할 수 있도록 한다.
+- 주문 누락 및 전달 오류를 줄여 매장 운영 효율을 향상시킨다.
+- 소상공인이 부담 없이 도입할 수 있는 저비용 테이블 오더 환경을 제공한다.
+- 고령층 사용자도 쉽게 사용할 수 있도록 단순하고 직관적인 UI를 제공한다.
+- 메뉴 사진, 설명, 가격, 품절 여부를 빠르게 수정할 수 있도록 하여 매장 운영의 유연성을 높인다.
+- 관리자와 매장 측이 주문 및 매장 데이터를 쉽게 모니터링할 수 있도록 한다.
+
+---
+
+## 3) Technical Goals
+WTOrder System의 기술적 목표는 다음과 같다.
+
+- 고객, 매장, 주방, 관리자 역할에 따라 기능을 구분하는 역할 기반 시스템을 구현한다.
+- 주문 데이터, 메뉴 데이터, 매장 데이터를 데이터베이스에 저장하고 관리한다.
+- 주문 요청 후 주방 전달까지 빠른 응답이 가능하도록 한다.
+- GUI 환경에서 누구나 쉽게 이해할 수 있는 인터페이스를 구성한다.
+- 메뉴 관리 기능(추가, 수정, 삭제, 품절 처리, 사진 및 설명 업로드)을 제공한다.
+- 주문 관련 데이터를 안정적으로 저장하고 추적할 수 있도록 한다.
+
+---
+
+# 2. Use case analysis
+
+## 2.1. Use Case Diagram
+
+아래의 그림은 WTOrder System의 Use Case Diagram을 나타낸 것이다.  
+Conceptualization 단계에서 정의한 기능을 바탕으로 Actor와 Use Case를 도출하였다.  
+Actor는 Customer, Store, Kitchen, Admin으로 구분하였으며, 각 기능은 시스템 내부에서 수행되는 역할에 따라 연결하였다.
+
+
