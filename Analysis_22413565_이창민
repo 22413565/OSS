@@ -1,0 +1,31 @@
+usecaseDiagram
+actor Customer
+actor Admin
+actor Kitchen
+actor Store
+
+rectangle WTOrder_System {
+
+  Customer --> (View Menu)
+  Customer --> (Add Order)
+  Customer --> (Confirm Order)
+  Customer --> (Call Staff)
+
+  Admin --> (Manage Store Info)
+  Admin --> (Monitor Store Data)
+
+  Kitchen --> (Receive Order)
+
+  Store --> (Manage Menu)
+  Store --> (Upload Photo)
+  Store --> (Edit Description)
+  Store --> (Set Price)
+  Store --> (Control Sold-out)
+  Store --> (Monitor Orders)
+
+  (Add Order) --> (Process Customer Order)
+  (Confirm Order) --> (Process Customer Order)
+
+  (Process Customer Order) --> (Send Order to Kitchen)
+  (Manage Menu) --> (Manage Menu Data)
+}
